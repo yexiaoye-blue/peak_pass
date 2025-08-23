@@ -18,17 +18,19 @@
 
 ## 📸 App Screenshots
 
-<div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px;">
-  <img src="./screenshot/01.png" alt="App Screenshot 1" style="width: 30%; border-radius: 24px;">
-  <img src="./screenshot/02.png" alt="App Screenshot 2" style="width: 30%; border-radius: 24px;">
-  <img src="screenshot/03.png" alt="App Screenshot 3" style="width: 30%; border-radius: 24px;">
-</div>
+<table style="text-align: center;">
+  <tr>
+    <td><img src="./screenshot/01.png" alt="App Screenshot 1" ></td>
+    <td><img src="./screenshot/02.png" alt="App Screenshot 2"></td>
+    <td><img src="screenshot/03.png" alt="App Screenshot 3"></td>
+  </tr>
 
-<div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
-  <img src="screenshot/04.png" alt="App Screenshot 4" style="width: 30%; border-radius: 24px;">
-  <img src="screenshot/05.png" alt="App Screenshot 5" style="width: 30%; border-radius: 24px;">
-  <img src="screenshot/06.png" alt="App Screenshot 6" style="width: 30%; border-radius: 24px;">
-</div>
+  <tr>
+    <td><img src="screenshot/04.png" alt="App Screenshot 4"></td>
+    <td><img src="screenshot/05.png" alt="App Screenshot 5"></td>
+    <td><img src="screenshot/06.png" alt="App Screenshot 6"></td>
+  </tr>
+</table>
 
 ## 🚀 Supported Platforms
 
@@ -63,16 +65,16 @@ Feel free to submit Issues and Pull Requests to help us improve Peak Pass!
 
 If you like Peak Pass and want to support continued development, please consider donating through the following methods:
 
-<div style="display: flex; gap: 20px; align-items: flex-start;">
-  <div style="text-align: center;">
-    <img src="donate/wechat.png" alt="WeChat Pay QR Code" width="150" style="border-radius: 10px;">
-    <p>WeChat Pay</p>
-  </div>
-  <div style="text-align: center;">
-    <img src="donate/alipay.png" alt="Alipay QR Code" width="150" style="border-radius: 10px;">
-    <p>Alipay</p>
-  </div>
-</div>
+<table style="text-align: center;">
+  <tr>
+    <td>
+    <img src="donate/wechat.png" alt="WeChat Pay QR Code" width="150px" style="border-radius: 10px;"><p>WeChat Pay</p>
+    </td>
+    <td>
+      <img src="donate/alipay.png" alt="Alipay QR Code" width="150px" style="border-radius: 10px;"><p>Alipay</p>
+    </td>
+  </tr>
+</table>
 
 Your support is our motivation for continuous improvement!
 

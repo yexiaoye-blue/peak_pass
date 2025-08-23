@@ -18,38 +18,42 @@
 
 ## 📸 应用截图
 
-<div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px;">
-  <img src="./screenshot/01.png" alt="应用截图1" style="width: 30%; border-radius: 24px;">
-  <img src="./screenshot/02.png" alt="应用截图2" style="width: 30%; border-radius: 24px;">
-  <img src="screenshot/03.png" alt="应用截图3" style="width: 30%; border-radius: 24px;">
-</div>
+<table style="text-align: center; width: 80%;">
+  <tr>
+    <td><img src="./screenshot/01.png" alt="应用截图1"></td>
+    <td><img src="./screenshot/02.png" alt="应用截图2"></td>
+    <td><img src="screenshot/03.png" alt="应用截图3"></td>
+  </tr>
 
-<div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
-  <img src="screenshot/04.png" alt="应用截图4" style="width: 30%; border-radius: 24px;">
-  <img src="screenshot/05.png" alt="应用截图5" style="width: 30%; border-radius: 24px;">
-  <img src="screenshot/06.png" alt="应用截图6" style="width: 30%; border-radius: 24px;">
-</div>
+  <tr>
+    <td><img src="screenshot/04.png" alt="应用截图4"></td>
+    <td><img src="screenshot/05.png" alt="应用截图5"></td>
+    <td><img src="screenshot/06.png" alt="应用截图6"></td>
+  </tr>
+</table>
 
 ## 🚀 支持的平台
 
-| 平台 | 状态 |
-|------|------|
-| Android | Bete版 |
-| iOS | 🔄开发中 |
-| macOS | 🔄开发中 |
-| Windows | 🔄开发中 |
-| Linux | 🔄开发中 |
+| 平台    | 状态      |
+| ------- | --------- |
+| Android | Bete 版   |
+| iOS     | 🔄 开发中 |
+| macOS   | 🔄 开发中 |
+| Windows | 🔄 开发中 |
+| Linux   | 🔄 开发中 |
 
 ## 📦 功能亮点
 
 ### 🔐 安全特性
-- 基于KeePass成熟技术，经过15年以上的安全验证
-- 采用AES-256和ChaCha20双重加密算法，军用级安全标准
-- 支持Argon2、AES-KDF等多种密钥派生函数，抵御暴力破解
+
+- 基于 KeePass 成熟技术，经过 15 年以上的安全验证
+- 采用 AES-256 和 ChaCha20 双重加密算法，军用级安全标准
+- 支持 Argon2、AES-KDF 等多种密钥派生函数，抵御暴力破解
 - 无需网络连接，离线存储确保数据隐私
 - 双重认证支持 (TOTP/HOTP)
 
 ### 🎨 用户体验
+
 - 简洁直观的界面设计
 - 支持生物识别解锁
 - 快速密码检索
@@ -63,16 +67,16 @@
 
 如果您喜欢 Peak Pass 并希望支持项目的持续开发，欢迎通过以下方式捐助我们：
 
-<div style="display: flex; gap: 20px; align-items: flex-start;">
-  <div style="text-align: center;">
-    <img src="donate/wechat.png" alt="微信支付二维码" width="150" style="border-radius: 10px;">
-    <p>微信支付</p>
-  </div>
-  <div style="text-align: center;">
-    <img src="donate/alipay.png" alt="支付宝支付二维码" width="150" style="border-radius: 10px;">
-    <p>支付宝支付</p>
-  </div>
-</div>
+<table style="text-align: center;">
+  <tr>
+    <td>
+    <img src="donate/wechat.png" alt="微信支付二维码" width="150px" style="border-radius: 10px;"><p>微信支付</p>
+    </td>
+    <td>
+      <img src="donate/alipay.png" alt="支付宝支付二维码" width="150px" style="border-radius: 10px;"><p>支付宝支付</p>
+    </td>
+  </tr>
+</table>
 
 您的支持是我们持续改进的动力！
 
@@ -85,4 +89,5 @@
 - 感谢 [kdbx](https://github.com/authpass/kdbx.dart) 项目提供的 kdbx 文件格式解析支持
 
 ---
+
 <p align="center">🔒 保护您的数字生活安全 🛡️</p>
