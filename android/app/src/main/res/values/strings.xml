@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Peak Pass</string>
+    <string name="settings">Settings</string>
+    <string name="autofill_service_name">Peak Pass Autofill</string>
+    <string name="autofill_item">Autofill Item</string>
+    <string name="autofill_image_desc">The icon of autofill item.</string>
+</resources>

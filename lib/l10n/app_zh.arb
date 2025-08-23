@@ -1,0 +1,342 @@
+{
+  "@@locale": "zh",
+
+  "appName": "Peak Pass",
+  "@appName": {},
+
+  "zh": "简体中文",
+  "@zh": {},
+
+  "zhHant": "繁体中文",
+  "@zhHant": {},
+
+  "en": "英文",
+  "@en": {},
+
+	
+  "recycleBin": "回收站",
+  "@recycleBin": {
+    "description": "Label for recycle bin section"
+  },
+
+  "databases": "数据库",
+  "@databases": {
+    "description": "Label for databases section"
+  },
+
+  "checkAll": "全选",
+  "@checkAll": {
+    "description": "Label for check all action"
+  },
+
+  "create": "创建",
+  "@create": {},
+
+  "confirm": "确认",
+  "@confirm": {},
+
+  "cancel": "取消",
+  "@cancel": {
+    "description": "Label for cancel action"
+  },
+
+  "createNew": "创建",
+  "@createNew": {},
+  "openExists": "打开已存在",
+  "@openExists": {},
+
+
+  "delete": "删除",
+  "@delete": {},
+  "deleteConfirm": "删除项目?",
+  "@deleteConfirm": {},
+  "deleteContent": "移除选中项目至回收站",
+  "@deleteContent": {},
+  "deleteFromRecycleBinConfirm": "从回收站中删除?",
+  "@deleteFromRecycleBinConfirm": {},
+  "deleteFromRecycleBinContent": "该操作将会永久删除选中的项目",
+  "@deleteFromRecycleBinContent": {},
+  
+  "recovery": "恢复",
+  "@recovery": {},
+  "recoveryConfirm": "恢复选中的项目?",
+  "@recoveryConfirm": {},
+  "recoveryContent": "这些项目会从回收站恢复到普通项目中.",
+  "@recoveryContent": {},
+
+  "createDatabase": "创建数据库",
+  "@createDatabase": {},
+
+  "databaseName": "数据库名称",
+  "@databaseName": {},
+  "enterDatabaseName": "输入数据库名称",
+  "@enterDatabaseName": {},
+  "masterPassword": "主密码",
+  "@masterPassword": {},
+  "enterPassword": "输入密码",
+  "@enterPassword": {},
+  "confirmPassword": "确认密码",
+  "@confirmPassword": {},
+  "keyfile": "密钥文件",
+  "@keyfile": {},
+  "clickToSelectOrGen": "点击以选择或新建",
+  "@clickToSelectOrGen": {},
+  "biometrics": "生物识别",
+  "@biometrics": {},
+  "biometricHWUnavailable": "您的硬件不支持生物识别功能",
+  "@biometricHWUnavailable": {},
+  "biometricNotEnrolled": "尚未录入任何生物识别信息或设备凭证（如锁屏密码）",
+  "@biometricNotEnrolled": {
+    "description": "与errorPasscodeNotSet该属性表现一致: Passcode is not set (iOS/MacOS) or no user credentials (on macos)."
+  },
+  "biometricNoHardware": "设备没有合适的生物识别硬件（如生物识别传感器或锁屏保护）",
+  "@biometricNoHardware": {},
+  "biometricStatusUnknown": "无法确定是否支持生物识别功能",
+  "@biometricStatusUnknown": {},
+  "biometricNotSupported": "不支持生物识别功能",
+  "@biometricNotSupported": {},
+
+  "chooseAtLeastOneUnlockingMethod": "至少选择一种解锁方式",
+  "@chooseAtLeastOneUnlockingMethod": {},
+
+
+  "keyfileProtectionTips": "密钥文件安全提示",
+  "@keyfileProtectionTips": {},
+  "keyfileProtectionContent": "密钥文件是主密钥的一部分，不包含任何数据库数据。如果丢失或被修改，数据库将无法访问。请妥善备份并安全保存。",
+  "@keyfileProtectionContent": {},
+  "enterKeyfileName": "输入数据库名称",
+  "@enterKeyfileName": {},
+  "select": "选择",
+  "@select": {},
+  "pleaseEnterKeyfileName": "请输入密钥文件名称",
+  "@pleaseEnterKeyfileName": {},
+
+  "generate": "生成",
+  "@generate": {},
+
+  "unlockDatabase": "解锁数据库",
+  "@unlockDatabase": {},
+  "password": "密码",
+  "@password": {},
+  "unlock": "解锁",
+  "@unlock": {},
+  "path": "路径",
+  "@path": {},
+  "size": "大小",
+  "@size": {},
+
+  "createdAt": "创建日期",
+  "@createdAt": {},
+  "accessedAt": "访问日期",
+  "@accessedAt": {},
+  "modifiedAt": "修改日期",
+  "@modifiedAt": {},
+
+  "pleaseEnterPassword": "请输入密码",
+  "@pleaseEnterPassword": {},
+  "unlockFailed": "解锁失败: {reason}",
+  "@unlockFailed": {
+    "placeholders": {
+      "reason": {
+        "type": "String",
+        "example": "错误的密码或密钥文件"
+      }
+    }
+  },
+  "invalidKey": "错误的密码或密钥文件",
+  "@invalidKey": {},
+  "biometricStorageEmpty": "生物识别存储为空",
+  "@biometricStorageEmpty": {},
+
+  "passwordGenerator": "密码生成器",
+  "@passwordGenerator": {},
+  "exportOrImport": "导入/导出",
+  "@exportOrImport": {},
+  "export": "导出",
+  "@export": {},
+  "backupOrRestore": "备份/恢复",
+  "@backupOrRestore": {},
+  "languages": "语言",
+  "@languages": {},
+  "settings": "设置",
+  "@settings": {},
+  "about": "关于",
+  "@about": {},
+  "rateApp": "给应用评分",
+  "@rateApp": {},
+  "safeExit": "安全退出",
+  "@safeExit": {},
+  "copy": "复制",
+  "@copy": {},
+  "passwordLength": "密码长度: {length}",
+  "@passwordLength": {
+    "description": "密码长度描述",
+    "placeholders": {
+      "length": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "parameters": "参数",
+  "@parameters": {},
+  "alphabetsLowercase": "小写字符",
+  "@alphabetsLowercase": {},
+  "alphabetsLowercaseContent": "使用小写字符'a'到'z'",
+  "@alphabetsLowercaseContent": {},
+  "alphabetsUppercase": "大写字符",
+  "@alphabetsUppercase": {},
+  "alphabetsUppercaseContent": "使用大写字符'A'到'Z'",
+  "@alphabetsUppercaseContent": {},
+  "digits": "数字",
+  "@digits": {},
+  "digitsContent": "使用数字'0'到'9'",
+  "@digitsContent": {},
+  "specialCharacters": "特殊字符",
+  "@specialCharacters": {},
+  "specialCharactersContent": "使用特殊字符!@#$%^*_-",
+  "@specialCharactersContent": {},
+  "withoutConfusion": "无易混淆字符",
+  "@withoutConfusion": {},
+  "withoutConfusionContent": "去除易混淆字符 'IOilo01'",
+  "@withoutConfusionContent": {},
+
+  "passwordList": "密码列表",
+  "@passwordList": {},
+  "groups": "分组",
+  "@groups": {
+    "description": "实际上这里原本设计的是类别"
+  },
+  "group": "分组",
+  "@group": {
+    "description": "好像intl 可以处理负数?"
+  },
+  "lists": "列表",
+  "@lists": {},
+  "newEntry": "新建条目",
+  "@newEntry": {},
+  "details": "详情",
+  "@details": {},
+  "createGroup": "创建分组",
+  "@createGroup": {},
+  "title": "标题",
+  "@title": {},
+  "username":"用户名",
+  "@username": {},
+  "email": "邮箱",
+  "@email": {},
+  "notes": "笔记",
+  "@notes": {},
+  "url": "URL",
+  "@url": {},
+  "uri": "URI",
+  "@uri": {},
+  "datetime": "日期",
+  "@datetime": {},
+  "number": "数字",
+  "@number": {},
+  "phone": "电话",
+  "@phone": {},
+  "otpAuth": "OTPAuth",
+  "@otpAuth": {},
+
+  "chooseFileType": "选择字段类型",
+  "@chooseFileType": {},
+  "moveUp": "向上移动",
+  "@moveUp": {},
+  "moveDown": "向下移动",
+  "@moveDown": {},
+  "remove": "移除",
+  "@remove": {},
+  
+  "otpScanner": "OTP扫描",
+  "@otpScanner": {
+    "description": "otp auth 二维码识别"
+  },
+  "enterManually": "手动输入",
+  "@enterManually": {},
+  "album": "相册",
+  "@album": {
+    "description": "从相册导入图片以识别OTPAuth等"
+  },
+  "account": "账户名",
+  "@account": {},
+  "issuer": "发布者",
+  "@issuer": {},
+  "secret": "密钥",
+  "@secret": {},
+  "otpDigits": "长度",
+  "@otpDigits": {
+    "description": "OTP生成code的长度"
+  },
+  "algorithm": "算法",
+  "@algorithm": {},
+  "period": "周期",
+  "@period": {},
+  "counter": "计数器",
+  "@counter": {},
+  "otpUri": "OTP URI",
+  "@otpUri": {
+    "description": "OTP认证的URI字符串"
+  },
+  "enterOTPUri": "输入OTP URI",
+  "@enterOTPUri": {},
+  "save": "保存",
+  "@save": {},
+  "edit": "编辑",
+  "@edit": {},
+  "addField": "添加字段",
+  "@addField": {},
+
+  "barcodeFindMultiple": "扫描到多个,默认使用第一个",
+  "@barcodeFindMultiple": {},
+  "clear": "清空",
+  "@clear": {},
+  "search": "搜索",
+  "@search": {},
+  "theme": "主题",
+  "@theme": {},
+
+  "cannotBeEmpty": "不能为空",
+  "@cannotBeEmpty": {},
+
+  "passwordInconsistentTwice": "两次密码不一致",
+  "@passwordInconsistentTwice": {},
+
+  "pleaseOpenUseKeyfileUnlockDatabase": "请先开启使用密钥文件解锁数据库",
+  "@pleaseOpenUseKeyfileUnlockDatabase": {},
+
+  "containsInvalidCharacters": "包含非法字符",
+  "@containsInvalidCharacters": {},
+
+  "scan": "扫描",
+  "@scan": {},
+
+  "successfully": "{mode}{name}成功!",
+  "@successfully": {
+    "placeholders": {
+      "mode" : {
+        "type": "String",
+        "example": "创建"
+      },
+      "name" : {
+        "type": "String",
+        "example": "数据库"
+      }
+    }
+  },
+
+  "failed": "{mode}{name}失败!",
+  "@failed": {
+    "placeholders": {
+      "mode" : {
+        "type": "String",
+        "example": "创建"
+      },
+      "name" : {
+        "type": "String",
+        "example": "数据库"
+      }
+    }
+  }
+}

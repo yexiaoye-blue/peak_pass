@@ -1,0 +1,416 @@
+{
+  "@@locale": "en",
+
+  "appName": "Peak Pass",
+  "@appName": {},
+
+  "zh": "Simplified Chinese",
+  "@zh": {},
+
+  "zhHant": "Traditional Chinese",
+  "@zhHant": {},
+
+  "en": "English",
+  "@en": {},
+
+  
+  "recycleBin": "Recycle Bin",
+  "@recycleBin": {
+    "description": "Label for recycle bin section"
+  },
+
+  "databases": "Databases",
+  "@databases": {
+    "description": "Label for databases section"
+  },
+
+  "checkAll": "Select All",
+  "@checkAll": {
+    "description": "Label for check all action"
+  },
+
+  "create": "Create",
+  "@create": {},
+
+  "confirm": "Confirm",
+  "@confirm": {},
+
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Label for cancel action"
+  },
+
+  "createNew": "Create",
+  "@createNew": {},
+  "openExists": "Open Existing",
+  "@openExists": {},
+
+  "delete": "Delete",
+  "@delete": {},
+  "deleteConfirm": "Delete item?",
+  "@deleteConfirm": {},
+  "deleteContent": "Move selected items to the recycle bin",
+  "@deleteContent": {},
+  "deleteFromRecycleBinConfirm": "Delete from recycle bin?",
+  "@deleteFromRecycleBinConfirm": {},
+  "deleteFromRecycleBinContent": "This action will permanently delete the selected items",
+  "@deleteFromRecycleBinContent": {},
+
+  "recovery": "Restore",
+  "@recovery": {},
+  "recoveryConfirm": "Restore selected items?",
+  "@recoveryConfirm": {},
+  "recoveryContent": "These items will be restored from the recycle bin to normal items.",
+  "@recoveryContent": {},
+
+  "createDatabase": "Create Database",
+  "@createDatabase": {},
+
+  "databaseName": "Database Name",
+  "@databaseName": {},
+  "enterDatabaseName": "Enter database name",
+  "@enterDatabaseName": {},
+  "masterPassword": "Master Password",
+  "@masterPassword": {},
+  "enterPassword": "Enter password",
+  "@enterPassword": {},
+  "confirmPassword": "Confirm password",
+  "@confirmPassword": {},
+  "keyfile": "Key File",
+  "@keyfile": {},
+  "clickToSelectOrGen": "Click to select or create new",
+  "@clickToSelectOrGen": {},
+  "biometrics": "Biometrics",
+  "@biometrics": {},
+  "biometricHWUnavailable": "Your hardware does not support biometric authentication",
+  "@biometricHWUnavailable": {},
+
+  "biometricNotEnrolled": "No biometric information or device credentials (e.g., lock screen password) enrolled",
+  "@biometricNotEnrolled": {
+    "description": "Same behavior as errorPasscodeNotSet: Passcode is not set (iOS/MacOS) or no user credentials (on macOS)."
+  },
+
+  "biometricNoHardware": "This device has no suitable biometric hardware (e.g., biometric sensor or lock screen protection)",
+  "@biometricNoHardware": {},
+
+  "biometricStatusUnknown": "Unable to determine whether biometric authentication is supported",
+  "@biometricStatusUnknown": {},
+
+  "biometricNotSupported": "Biometric authentication is not supported",
+  "@biometricNotSupported": {},
+
+
+  "chooseAtLeastOneUnlockingMethod": "Choose at least one unlocking method",
+  "@chooseAtLeastOneUnlockingMethod": {},
+
+  "keyfileProtectionTips": "Key File Security Tips",
+  "@keyfileProtectionTips": {},
+
+  "keyfileProtectionContent": "A key file is part of the master key and contains no database data. If lost or modified, the database becomes inaccessible. Back it up securely.",
+  "@keyfileProtectionContent": {},
+
+  "enterKeyfileName": "Enter key file name",
+  "@enterKeyfileName": {},
+
+  "select": "Select",
+  "@select": {},
+
+  "pleaseEnterKeyfileName": "Please enter the key file name",
+  "@pleaseEnterKeyfileName": {},
+
+  "generate": "Generate",
+  "@generate": {},
+
+  "unlockDatabase": "Unlock Database",
+  "@unlockDatabase": {},
+
+  "password": "Password",
+  "@password": {},
+
+  "unlock": "Unlock",
+  "@unlock": {},
+
+  "path": "Path",
+  "@path": {},
+
+  "size": "Size",
+  "@size": {},
+
+  "createdAt": "Created At",
+  "@createdAt": {},
+
+  "accessedAt": "Accessed At",
+  "@accessedAt": {},
+
+  "modifiedAt": "Modified At",
+  "@modifiedAt": {},
+
+  "pleaseEnterPassword": "Please enter password",
+  "@pleaseEnterPassword": {},
+
+  "unlockFailed": "Unlock failed: {reason}",
+  "@unlockFailed": {
+    "placeholders": {
+      "reason": {
+        "type": "String",
+        "example": "Incorrect password or key file"
+      }
+    }
+  },
+
+  "invalidKey": "Incorrect password or key file",
+  "@invalidKey": {},
+
+  "biometricStorageEmpty": "Biometric storage is empty",
+  "@biometricStorageEmpty": {},
+
+
+  "passwordGenerator": "Password Generator",
+  "@passwordGenerator": {},
+
+  "exportOrImport": "Import / Export",
+  "@exportOrImport": {},
+
+
+  "export": "Export",
+  "@export": {},
+
+  "backupOrRestore": "Backup / Restore",
+  "@backupOrRestore": {},
+
+  "languages": "Languages",
+  "@languages": {},
+
+  "settings": "Settings",
+  "@settings": {},
+
+  "about": "About",
+  "@about": {},
+
+  "rateApp": "Rate App",
+  "@rateApp": {},
+
+  "safeExit": "Safe Exit",
+  "@safeExit": {},
+
+  "copy": "Copy",
+  "@copy": {},
+
+  "passwordLength": "Password Length: {length}",
+  "@passwordLength": {
+    "description": "Password Length description",
+    "placeholders": {
+      "length": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+
+  "parameters": "Parameters",
+  "@parameters": {},
+
+  "alphabetsLowercase": "Lowercase Letters",
+  "@alphabetsLowercase": {},
+
+  "alphabetsLowercaseContent": "Use lowercase letters 'a' to 'z'",
+  "@alphabetsLowercaseContent": {},
+
+  "alphabetsUppercase": "Uppercase Letters",
+  "@alphabetsUppercase": {},
+
+  "alphabetsUppercaseContent": "Use uppercase letters 'A' to 'Z'",
+  "@alphabetsUppercaseContent": {},
+
+  "digits": "Digits",
+  "@digits": {},
+
+  "digitsContent": "Use digits '0' to '9'",
+  "@digitsContent": {},
+
+  "specialCharacters": "Special Characters",
+  "@specialCharacters": {},
+
+  "specialCharactersContent": "Use special characters !@#$%^*_-",
+  "@specialCharactersContent": {},
+
+  "withoutConfusion": "Exclude Confusing Characters",
+  "@withoutConfusion": {},
+
+  "withoutConfusionContent": "Remove easily confused characters 'IOilo01'",
+  "@withoutConfusionContent": {},
+
+  "passwordList": "Password List",
+  "@passwordList": {},
+
+  "groups": "Groups",
+  "@groups": {
+    "description": "Originally designed as categories"
+  },
+
+  "group": "Group",
+  "@group": {
+    "description": "Seems like intl can handle negative numbers?"
+  },
+
+  "lists": "Lists",
+  "@lists": {},
+
+  "newEntry": "New Entry",
+  "@newEntry": {},
+
+  "details": "Details",
+  "@details": {},
+
+  "createGroup": "Create Category",
+  "@createGroup": {},
+
+  "title": "Title",
+  "@title": {},
+
+  "username": "Username",
+  "@username": {},
+
+  "email": "Email",
+  "@email": {},
+
+  "notes": "Notes",
+  "@notes": {},
+
+  "url": "URL",
+  "@url": {},
+
+  "uri": "URI",
+  "@uri": {},
+
+  "datetime": "Datetime",
+  "@datetime": {},
+
+  "number": "Number",
+  "@number": {},
+
+  "phone": "Phone",
+  "@phone": {},
+
+  "otpAuth": "OTPAuth",
+  "@otpAuth": {},
+
+  "chooseFileType": "Choose Field Type",
+  "@chooseFileType": {},
+
+  "moveUp": "Move Up",
+  "@moveUp": {},
+
+  "moveDown": "Move Down",
+  "@moveDown": {},
+
+  "remove": "Remove",
+  "@remove": {},
+
+  "otpScanner": "OTP Scanner",
+  "@otpScanner": {
+    "description": "OTP auth QR code recognition"
+  },
+
+  "enterManually": "Enter Manually",
+  "@enterManually": {},
+
+  "album": "Album",
+  "@album": {
+    "description": "Import image from album to recognize OTPAuth, etc."
+  },
+
+  "account": "Account Name",
+  "@account": {},
+
+  "issuer": "Issuer",
+  "@issuer": {},
+
+  "secret": "Secret",
+  "@secret": {},
+
+  "otpDigits": "Length",
+  "@otpDigits": {
+    "description": "Length of the OTP code generated"
+  },
+
+  "algorithm": "Algorithm",
+  "@algorithm": {},
+
+  "period": "Period",
+  "@period": {},
+
+  "counter": "Counter",
+  "@counter": {},
+
+  "otpUri": "OTP URI",
+  "@otpUri": {
+    "description": "URI string for OTP authentication"
+  },
+
+  "enterOTPUri": "Enter OTP URI",
+  "@enterOTPUri": {},
+
+  "save": "Save",
+  "@save": {},
+  "edit": "Edit",
+  "@edit": {},
+
+  "addField": "Add Field",
+  "@addField": {},
+
+  "barcodeFindMultiple": "Multiple codes detected, the first one will be used by default",
+  "@barcodeFindMultiple": {},
+
+  "clear": "Clear",
+  "@clear": {},
+  "search": "Search",
+  "@search": {},
+  "theme": "Theme",
+  "@theme": {},
+
+  "cannotBeEmpty": "Cannot be empty.",
+  "@cannotBeEmpty": {},
+
+  "passwordInconsistentTwice": "The password is inconsistent twice",
+  "@passwordInconsistentTwice": {},
+
+  "pleaseOpenUseKeyfileUnlockDatabase": "Please use the key file to unlock the database",
+  "@pleaseOpenUseKeyfileUnlockDatabase": {},
+
+  "containsInvalidCharacters": "Contains invalid characters.",
+  "@containsInvalidCharacters": {},
+
+  "scan": "Scan",
+  "@scan": {},
+
+  "successfully": "{mode} {name} successfully!",
+  "@successfully": {
+    "description": "Create database successfully!",
+    "placeholders": {
+      "mode" : {
+        "type": "String",
+        "example": "Create"
+      },
+      "name": {
+        "type": "String",
+        "example": "Database"
+      }
+    }
+  },
+
+  "failed": "Failed to {mode} {name}!",
+  "@failed": {
+    "description": "Failed to Create database!",
+    "placeholders": {
+      "mode" : {
+        "type": "String",
+        "example": "Create"
+      },
+      "name": {
+        "type": "String",
+        "example": "Database"
+      }
+    }
+  }
+}
