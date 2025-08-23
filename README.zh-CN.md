@@ -18,7 +18,7 @@
 
 ## 📸 应用截图
 
-<table style="text-align: center; width: 80%;">
+<table>
   <tr>
     <td><img src="./screenshot/01.png" alt="应用截图1"></td>
     <td><img src="./screenshot/02.png" alt="应用截图2"></td>
@@ -37,10 +37,10 @@
 | 平台    | 状态      |
 | ------- | --------- |
 | Android | Bete 版   |
-| iOS     | 🔄 开发中 |
-| macOS   | 🔄 开发中 |
-| Windows | 🔄 开发中 |
-| Linux   | 🔄 开发中 |
+| iOS     | 🚧 开发中 |
+| macOS   | 🚧 开发中 |
+| Windows | 🚧 开发中 |
+| Linux   | 🚧 开发中 |
 
 ## 📦 功能亮点
 
@@ -67,13 +67,17 @@
 
 如果您喜欢 Peak Pass 并希望支持项目的持续开发，欢迎通过以下方式捐助我们：
 
-<table style="text-align: center;">
+<table>
   <tr>
     <td>
-    <img src="donate/wechat.png" alt="微信支付二维码" width="150px" style="border-radius: 10px;"><p>微信支付</p>
+      <div align="center">
+        <img src="donate/wechat.png" alt="微信支付二维码" width="150px" style="border-radius: 10px;"><p>微信支付</p>
+      </div> 
     </td>
     <td>
-      <img src="donate/alipay.png" alt="支付宝支付二维码" width="150px" style="border-radius: 10px;"><p>支付宝支付</p>
+      <div align="center">
+        <img src="donate/alipay.png" alt="支付宝支付二维码" width="150px" style="border-radius: 10px;"><p>支付宝支付</p>
+      </div> 
     </td>
   </tr>
 </table>

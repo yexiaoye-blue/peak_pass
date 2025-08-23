@@ -18,7 +18,7 @@
 
 ## 📸 App Screenshots
 
-<table style="text-align: center;">
+<table>
   <tr>
     <td><img src="./screenshot/01.png" alt="App Screenshot 1" ></td>
     <td><img src="./screenshot/02.png" alt="App Screenshot 2"></td>
@@ -34,13 +34,13 @@
 
 ## 🚀 Supported Platforms
 
-| Platform | Status |
-|----------|--------|
-| Android | Beta |
-| iOS | 🔄 In Development |
-| macOS | 🔄 In Development |
-| Windows | 🔄 In Development |
-| Linux | 🔄 In Development |
+| Platform | Status            |
+|----------|-------------------|
+| Android  | Beta              |
+| iOS      | 🚧 In Development |
+| macOS    | 🚧 In Development |
+| Windows  | 🚧 In Development |
+| Linux    | 🚧 In Development |
 
 ## 📦 Feature Highlights
 
@@ -65,13 +65,17 @@ Feel free to submit Issues and Pull Requests to help us improve Peak Pass!
 
 If you like Peak Pass and want to support continued development, please consider donating through the following methods:
 
-<table style="text-align: center;">
+<table>
   <tr>
     <td>
-    <img src="donate/wechat.png" alt="WeChat Pay QR Code" width="150px" style="border-radius: 10px;"><p>WeChat Pay</p>
+      <div align="center">
+        <img src="donate/wechat.png" alt="WeChat Pay QR Code" width="150px" style="border-radius: 10px;"><p>WeChat Pay</p>
+      </div> 
     </td>
     <td>
-      <img src="donate/alipay.png" alt="Alipay QR Code" width="150px" style="border-radius: 10px;"><p>Alipay</p>
+      <div align="center">
+        <img src="donate/alipay.png" alt="Alipay QR Code" width="150px" style="border-radius: 10px;"><p>Alipay</p>
+      </div> 
     </td>
   </tr>
 </table>
