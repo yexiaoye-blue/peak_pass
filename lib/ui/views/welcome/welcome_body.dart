@@ -134,7 +134,7 @@ class _EntryListTile extends StatelessWidget {
                 } else if (snapshot.hasError) {
                   return const Text('');
                 }
-                return const Text('Loading...');
+                return const Center(child: CircularProgressIndicator(),);
               },
             ),
           ),

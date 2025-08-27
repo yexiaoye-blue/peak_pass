@@ -124,14 +124,7 @@ class KdbxService {
     }
 
     final dbBytes = await fileService.read(dbModel);
-
     final kdbxFile = await KdbxFormat().read(dbBytes, credentials);
-
-    // TODO: 存储该数据库对应的解锁方式
-    // StorageServiceUtils.setUnlockMethod(
-    //   nameWithoutExtension: dbModel.basenameWithoutExtension,
-    //   value: unlockTypeModel,
-    // );
 
     _kdbxWrapper = KdbxFileWrapper(kdbxFile: kdbxFile, fileModel: dbModel);
     // 创建临时工作区分组
@@ -175,12 +168,6 @@ class KdbxService {
 
     // 8. 保存
     await save();
-
-    // 9.  TODO: 存储该数据库对应的解锁方式
-    // StorageServiceUtils.setUnlockMethod(
-    //   nameWithoutExtension: dbModel.basenameWithoutExtension,
-    //   value: unlockTypeModel,
-    // );
     return _kdbxWrapper!;
   }
 

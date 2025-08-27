@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:peak_pass/data/services/kdbx_service.dart';
 import 'package:peak_pass/ui/widgets/fade_cross_transition.dart';
-import 'package:peak_pass/utils/common_utils.dart';
 import 'package:peak_pass/utils/loc.dart';
 import 'package:provider/provider.dart';
 
