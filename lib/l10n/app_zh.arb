@@ -1,51 +1,37 @@
 {
   "@@locale": "zh",
-
   "appName": "Peak Pass",
   "@appName": {},
-
   "zh": "简体中文",
   "@zh": {},
-
   "zhHant": "繁体中文",
   "@zhHant": {},
-
   "en": "英文",
   "@en": {},
-
-	
   "recycleBin": "回收站",
   "@recycleBin": {
     "description": "Label for recycle bin section"
   },
-
   "databases": "数据库",
   "@databases": {
     "description": "Label for databases section"
   },
-
   "checkAll": "全选",
   "@checkAll": {
     "description": "Label for check all action"
   },
-
   "create": "创建",
   "@create": {},
-
   "confirm": "确认",
   "@confirm": {},
-
   "cancel": "取消",
   "@cancel": {
     "description": "Label for cancel action"
   },
-
   "createNew": "创建",
   "@createNew": {},
   "openExists": "打开已存在",
   "@openExists": {},
-
-
   "delete": "删除",
   "@delete": {},
   "deleteConfirm": "删除项目?",
@@ -56,17 +42,14 @@
   "@deleteFromRecycleBinConfirm": {},
   "deleteFromRecycleBinContent": "该操作将会永久删除选中的项目",
   "@deleteFromRecycleBinContent": {},
-  
   "recovery": "恢复",
   "@recovery": {},
   "recoveryConfirm": "恢复选中的项目?",
   "@recoveryConfirm": {},
   "recoveryContent": "这些项目会从回收站恢复到普通项目中.",
   "@recoveryContent": {},
-
   "createDatabase": "创建数据库",
   "@createDatabase": {},
-
   "databaseName": "数据库名称",
   "@databaseName": {},
   "enterDatabaseName": "输入数据库名称",
@@ -95,11 +78,8 @@
   "@biometricStatusUnknown": {},
   "biometricNotSupported": "不支持生物识别功能",
   "@biometricNotSupported": {},
-
   "chooseAtLeastOneUnlockingMethod": "至少选择一种解锁方式",
   "@chooseAtLeastOneUnlockingMethod": {},
-
-
   "keyfileProtectionTips": "密钥文件安全提示",
   "@keyfileProtectionTips": {},
   "keyfileProtectionContent": "密钥文件是主密钥的一部分，不包含任何数据库数据。如果丢失或被修改，数据库将无法访问。请妥善备份并安全保存。",
@@ -110,10 +90,8 @@
   "@select": {},
   "pleaseEnterKeyfileName": "请输入密钥文件名称",
   "@pleaseEnterKeyfileName": {},
-
   "generate": "生成",
   "@generate": {},
-
   "unlockDatabase": "解锁数据库",
   "@unlockDatabase": {},
   "password": "密码",
@@ -124,14 +102,12 @@
   "@path": {},
   "size": "大小",
   "@size": {},
-
   "createdAt": "创建日期",
   "@createdAt": {},
   "accessedAt": "访问日期",
   "@accessedAt": {},
   "modifiedAt": "修改日期",
   "@modifiedAt": {},
-
   "pleaseEnterPassword": "请输入密码",
   "@pleaseEnterPassword": {},
   "unlockFailed": "解锁失败: {reason}",
@@ -147,7 +123,6 @@
   "@invalidKey": {},
   "biometricStorageEmpty": "生物识别存储为空",
   "@biometricStorageEmpty": {},
-
   "passwordGenerator": "密码生成器",
   "@passwordGenerator": {},
   "exportOrImport": "导入/导出",
@@ -200,7 +175,6 @@
   "@withoutConfusion": {},
   "withoutConfusionContent": "去除易混淆字符 'IOilo01'",
   "@withoutConfusionContent": {},
-
   "passwordList": "密码列表",
   "@passwordList": {},
   "groups": "分组",
@@ -221,7 +195,7 @@
   "@createGroup": {},
   "title": "标题",
   "@title": {},
-  "username":"用户名",
+  "username": "用户名",
   "@username": {},
   "email": "邮箱",
   "@email": {},
@@ -239,7 +213,6 @@
   "@phone": {},
   "otpAuth": "OTPAuth",
   "@otpAuth": {},
-
   "chooseFileType": "选择字段类型",
   "@chooseFileType": {},
   "moveUp": "向上移动",
@@ -248,7 +221,6 @@
   "@moveDown": {},
   "remove": "移除",
   "@remove": {},
-  
   "otpScanner": "OTP扫描",
   "@otpScanner": {
     "description": "otp auth 二维码识别"
@@ -287,7 +259,6 @@
   "@edit": {},
   "addField": "添加字段",
   "@addField": {},
-
   "barcodeFindMultiple": "扫描到多个,默认使用第一个",
   "@barcodeFindMultiple": {},
   "clear": "清空",
@@ -296,47 +267,44 @@
   "@search": {},
   "theme": "主题",
   "@theme": {},
-
   "cannotBeEmpty": "不能为空",
   "@cannotBeEmpty": {},
-
   "passwordInconsistentTwice": "两次密码不一致",
   "@passwordInconsistentTwice": {},
-
   "pleaseOpenUseKeyfileUnlockDatabase": "请先开启使用密钥文件解锁数据库",
   "@pleaseOpenUseKeyfileUnlockDatabase": {},
-
   "containsInvalidCharacters": "包含非法字符",
   "@containsInvalidCharacters": {},
-
   "scan": "扫描",
   "@scan": {},
-
   "successfully": "{mode}{name}成功!",
   "@successfully": {
     "placeholders": {
-      "mode" : {
+      "mode": {
         "type": "String",
         "example": "创建"
       },
-      "name" : {
+      "name": {
         "type": "String",
         "example": "数据库"
       }
     }
   },
-
   "failed": "{mode}{name}失败!",
   "@failed": {
     "placeholders": {
-      "mode" : {
+      "mode": {
         "type": "String",
         "example": "创建"
       },
-      "name" : {
+      "name": {
         "type": "String",
         "example": "数据库"
       }
     }
-  }
+  },
+  "recycleBinIsEmpty": "回收站为空",
+  "@recycleBinIsEmpty": {},
+  "noDatabaseAvailable": "没有可用的数据库",
+  "@noDatabaseAvailable": {}
 }

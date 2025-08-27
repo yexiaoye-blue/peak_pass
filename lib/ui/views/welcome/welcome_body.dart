@@ -15,9 +15,11 @@ class WelcomeBody extends StatelessWidget {
     super.key,
     required this.databaseInfo,
     required this.animation,
+    this.onLongPress
   });
   final List<FileModel> databaseInfo;
   final Animation<double> animation;
+  final VoidCallback? onLongPress;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class WelcomeBody extends StatelessWidget {
               key: ValueKey(databaseInfo[index].basenameWithoutExtension),
               animation: animation,
               info: databaseInfo[index],
+              onLongPress: onLongPress,
             );
           },
           separatorBuilder: (context, index) => SizedBox(height: 4),
@@ -49,11 +52,11 @@ class _EntryListTile extends StatelessWidget {
     super.key,
     required this.animation,
     required this.info,
-    // this.onChanged,
+    this.onLongPress,
   });
   final Animation<double> animation;
   final FileModel info;
-  // final void Function(bool?)? onChanged;
+  final VoidCallback? onLongPress;
 
   static const double checkBoxWidth = 32;
 
@@ -89,6 +92,9 @@ class _EntryListTile extends StatelessWidget {
         final value = animation.value;
         return ListTile(
           onTap: () => _handleTap(fileProvider, context, value > 0.5),
+          onLongPress: () {
+            onLongPress?.call();
+          },
           minLeadingWidth: 0,
           horizontalTitleGap: 0,
           minVerticalPadding: 2,

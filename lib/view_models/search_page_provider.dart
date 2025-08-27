@@ -2,16 +2,67 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:kdbx/kdbx.dart';
-
+import 'package:peak_pass/view_models/kdbx_ui_provider.dart';
 import '../utils/common_utils.dart';
 
-class SearchPageProvider extends ChangeNotifier {
-  final List<KdbxEntry> entries;
-  final List<KdbxGroup> groups;
-  SearchPageProvider(this.entries, this.groups) {
-    // Tab: 'All' 默认加载10条
-    _searchResult = entries.take(10).toList();
+/// Search page group 展示所用group
+class SearchPageGroupVM {
+  final String? name;
+  final KdbxGroup? group;
+  SearchPageGroupVM({required this.name, this.group});
+
+  @override
+  bool operator ==(covariant SearchPageGroupVM other) {
+    if (identical(this, other)) return true;
+  
+    return 
+      other.name == name &&
+      other.group == group;
   }
+
+  @override
+  int get hashCode => name.hashCode ^ group.hashCode;
+}
+
+class SearchPageProvider extends ChangeNotifier {
+  SearchPageProvider(TickerProvider vsync, this.kdbxUIProvider) {
+    groups =
+        kdbxUIProvider.groupsUI
+            .map(
+              (group) =>
+                  SearchPageGroupVM(name: group.name.get(), group: group),
+            )
+            .toList();
+    groups.insert(0, groupAll);
+
+    entries = kdbxUIProvider.entriesUI;
+    searchController = TextEditingController();
+    tabController = TabController(length: groups.length, vsync: vsync);
+    tabController.addListener(handleTabChange);
+    searchController.addListener(handleTextChange);
+
+    // 默认加载rootGroup(所有)中maxCount条
+    _searchResult = entries.take(defaultMaxCount).toList();
+  }
+
+  static const int defaultMaxCount = 1000;
+  static final SearchPageGroupVM groupAll = SearchPageGroupVM(name: 'All');
+
+  late final KdbxUIProvider kdbxUIProvider;
+  late final TextEditingController searchController;
+  late final TabController tabController;
+  late final List<KdbxEntry> entries;
+  late final List<SearchPageGroupVM> groups;
+
+  int _currentGroupIndex = 0;
+  int get currentGroupIndex => _currentGroupIndex;
+  set currentGroupIndex(int index) {
+    _currentGroupIndex = index;
+    notifyListeners();
+  }
+
+  /// 当前tab所在的分组
+  SearchPageGroupVM get currentGroup => groups[_currentGroupIndex];
 
   bool _loading = false;
   bool get loading => _loading;
@@ -30,95 +81,87 @@ class SearchPageProvider extends ChangeNotifier {
   Timer? _debounce;
 
   /// 根据关键词搜索
-  Future<List<KdbxEntry>> searchByKeyword(String keyword, [int? maxCount]) {
-    loading = true;
+  Future<List<KdbxEntry>> _searchByKeyword(String keyword, int maxCount) {
     final completer = Completer<List<KdbxEntry>>();
     _debounce?.cancel();
-
-    // keyword empty
     if (keyword.isEmpty) {
-      if (maxCount != null) {
-        searchResult =
-            entries
-                .getRange(
-                  0,
-                  maxCount >= entries.length ? entries.length : maxCount,
-                )
-                .toList();
-        completer.complete(searchResult);
-      } else {
-        searchResult = entries;
-        completer.complete(searchResult);
+      try {
+        completer.complete(entries.take(maxCount).toList());
+        return completer.future;
+      } catch (e) {
+        logger.e(e);
+        completer.completeError(e);
       }
-
-      loading = false;
-      return completer.future;
     }
 
     _debounce = Timer(const Duration(milliseconds: 200), () {
       try {
-        // 关键词搜索
-        final List<KdbxEntry> res = [];
-        for (var entry in entries) {
-          if (entry.debugLabel()?.toLowerCase().contains(
+        final matchedEntries = entries.where(
+          (entry) =>
+              entry.debugLabel()?.toLowerCase().contains(
                 keyword.toLowerCase(),
               ) ??
-              true) {
-            if (maxCount != null && res.length >= maxCount) {
-              break;
-            } else {
-              res.add(entry);
-            }
-          }
-        }
-        searchResult = res;
+              true,
+        );
+        completer.complete(matchedEntries.take(maxCount).toList());
       } catch (err) {
         logger.e(err);
-
-        searchResult = [];
-      } finally {
-        completer.complete(searchResult);
-        loading = false;
+        completer.completeError(err);
       }
     });
     return completer.future;
   }
 
   /// 根据关键词搜索 + 分组过滤
-  Future<List<KdbxEntry>> filterSearchResultByGroups(
-    String keyword,
-    List<KdbxGroup> selectedGroups, [
-    bool sortGroup = false,
+  /// - keyword: 搜索关键词
+  /// - selectedGroups: 筛选的分组
+  /// - maxCount: 最多返回的条目数
+  Future<void> searchEntry(
+    String keyword, [
+    SearchPageGroupVM? targetGroup,
+    int maxCount = defaultMaxCount,
   ]) async {
-    if (sortGroup) {
-      groups.sort((a, b) {
-        final aSelected = selectedGroups.contains(a);
-        final bSelected = selectedGroups.contains(b);
+    loading = true;
+    targetGroup ??= groupAll;
+    try {
+      // 1. 根据关键字搜索
+      final keywordResult = await _searchByKeyword(keyword, maxCount);
 
-        if (aSelected && !bSelected) return -1;
-        if (!aSelected && bSelected) return 1;
+      // 2. 如果是groupAll, 那么则是搜索全部并通过keywordResult再次筛选
+      if (targetGroup == groupAll) {
+        searchResult =
+            kdbxUIProvider.rootGroup.getAllEntries().where(keywordResult.contains).toList();
+        return;
+      }
+      // 3. 否则搜索指定分组
+      assert(targetGroup.group != null);
 
-        // 保持原顺序
-        return 0;
-      });
+      searchResult = targetGroup.group!.entries.where(keywordResult.contains).toList();
+    } catch (e) {
+      logger.e(e);
+      rethrow;
+    } finally {
+      loading = false;
     }
-
-    final searchRes = await searchByKeyword(keyword);
-    if (selectedGroups.isEmpty) {
-      searchResult = searchRes;
-      return searchRes;
-    }
-    searchResult =
-        selectedGroups
-            .expand((group) => group.entries)
-            .where((entry) => searchRes.contains(entry))
-            .toList();
-    return searchResult;
   }
+
+  void handleTabChange() async {
+    if (tabController.indexIsChanging) return;
+    _currentGroupIndex = tabController.index;
+    await searchEntry(searchController.text, currentGroup);
+  }
+
+  void handleTextChange() async =>
+      await searchEntry(searchController.text, currentGroup);
 
   @override
   void dispose() {
+    searchController.removeListener(handleTextChange);
+    tabController.removeListener(handleTabChange);
+
     _debounce?.cancel();
+    searchController.dispose();
+    tabController.dispose();
     super.dispose();
   }
 }

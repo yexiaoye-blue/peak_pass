@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:peak_pass/ui/widgets/gap.dart';
+import 'package:peak_pass/utils/loc.dart';
 
 /// 本地和用户自定义路径无数据文件时显示的空页面
 class WelcomeBodyEmpty extends StatelessWidget {
@@ -23,7 +24,9 @@ class WelcomeBodyEmpty extends StatelessWidget {
         ),
         Gap.vertical(6),
         Text(
-          isRecycleBin ? 'Recycle Bin is empty.' : 'No database available.',
+          isRecycleBin
+              ? loc(context).recycleBinIsEmpty
+              : loc(context).noDatabaseAvailable,
           style: TextStyle(
             color: Theme.of(context).colorScheme.onSurfaceVariant,
             fontSize: 24,

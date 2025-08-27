@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:peak_pass/common/exceptions/business_exception.dart';
 import 'package:peak_pass/data/services/storage_service_utils.dart';
+import 'package:peak_pass/utils/common_utils.dart';
 
 class LocaleProvider extends ChangeNotifier {
   LocaleProvider() {
@@ -25,11 +26,18 @@ class LocaleProvider extends ChangeNotifier {
 
     // 2. 使用系统默认值
     final systemLocale = PlatformDispatcher.instance.locale;
+    logger.d(systemLocale);
     return isSupport(systemLocale) ? systemLocale : en;
   }
 
-  bool isSupport(Locale locale) =>
-      AppLocalizations.supportedLocales.contains(locale);
+  bool isSupport(Locale locale) {
+    final res =
+        AppLocalizations.supportedLocales
+            .where((supported) => supported.languageCode == locale.languageCode)
+            .firstOrNull;
+
+    return res != null;
+  }
 
   List<Locale> get supportedLocales => AppLocalizations.supportedLocales;
 

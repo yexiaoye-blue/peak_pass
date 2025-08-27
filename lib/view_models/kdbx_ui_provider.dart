@@ -10,10 +10,15 @@ class KdbxUIProvider extends ChangeNotifier {
   void resetUIModel() {
     _entriesUI = _entries;
     _groupsUI = _groups;
+
+    // 将rootGroup放在第一位
+    _groupsUI.removeWhere((group) => group == rootGroup);
+    _groupsUI.insert(0, rootGroup);
   }
 
   bool get initialized => kdbxService.initialized;
 
+  KdbxGroup get rootGroup => kdbxService.rootGroup;
   // 当前数据库所有条目列表
   List<KdbxEntry> get _entries => kdbxService.allEntries;
   List<KdbxGroup> get _groups => kdbxService.allGroups;
@@ -36,6 +41,16 @@ class KdbxUIProvider extends ChangeNotifier {
     _groupsUI = entriesUI;
     notifyListeners();
   }
+
+  
+  /// 对group name 做处理: 将rootGroup的名字渲染为All
+  /// TODO loc
+  // String getGroupName(KdbxGroup group) {
+  //   if (group.uuid == rootGroup.uuid) {
+  //     return 'All';
+  //   }
+  //   return group.name.get() ?? "Unknown";
+  // }
 
   // 根据选定的分组过滤条目，并可选择对分组排序，将选中的分组移到前面
   void filterEntryByGroups(

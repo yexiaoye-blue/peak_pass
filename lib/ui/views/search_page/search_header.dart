@@ -1,27 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:kdbx/kdbx.dart';
 import 'package:peak_pass/utils/loc.dart';
+import 'package:peak_pass/view_models/search_page_provider.dart';
 import 'package:provider/provider.dart';
-
-import '../../../view_models/search_page_provider.dart';
 
 class SearchHeader extends StatelessWidget implements PreferredSizeWidget {
   const SearchHeader({
     super.key,
     required this.tabController,
     required this.searchController,
-    required this.defaultGroups,
   });
 
   final TabController tabController;
   final TextEditingController searchController;
-  final List<KdbxGroup> defaultGroups;
 
   static const double tabBarHeight = 36;
 
   @override
   Widget build(BuildContext context) {
-    final searchPageProvider = context.read<SearchPageProvider>();
+    final provider = context.read<SearchPageProvider>();
 
     return AppBar(
       automaticallyImplyLeading: false,
@@ -33,9 +29,6 @@ class SearchHeader extends StatelessWidget implements PreferredSizeWidget {
       elevation: 1,
       title: SearchBar(
         controller: searchController,
-        onChanged: (val) async {
-          await searchPageProvider.searchByKeyword(val);
-        },
         constraints: const BoxConstraints(
           minWidth: 360,
           maxWidth: 800,
@@ -53,7 +46,7 @@ class SearchHeader extends StatelessWidget implements PreferredSizeWidget {
             GestureDetector(
               onTap: () async {
                 searchController.clear();
-                await searchPageProvider.searchByKeyword(searchController.text);
+                await provider.searchEntry('');
                 tabController.index = 0;
               },
               child: Icon(Icons.clear),
@@ -63,7 +56,10 @@ class SearchHeader extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         TextButton(
           onPressed: () async {
-            await searchPageProvider.searchByKeyword(searchController.text);
+            await provider.searchEntry(
+              searchController.text,
+              provider.currentGroup,
+            );
           },
           child: Text(loc(context).search),
         ),
@@ -78,19 +74,16 @@ class SearchHeader extends StatelessWidget implements PreferredSizeWidget {
             Theme.of(context).colorScheme.surfaceContainer,
           ),
           padding: EdgeInsets.all(0),
-          tabs: [
-            Tab(text: 'All', height: tabBarHeight),
-            ...List.generate(
-              defaultGroups.length,
-              (index) => Tab(text: defaultGroups[index].name.get(), height: 36),
+          tabs: List.generate(
+            provider.groups.length,
+            (index) => Tab(
+              text: provider.groups[index].name,
+              // text: context.read<KdbxUIProvider>().getGroupName(
+              //   provider.groups[index],
+              // ),
+              height: 36,
             ),
-          ],
-          onTap: (index) async {
-            await searchPageProvider.filterSearchResultByGroups(
-              searchController.text,
-              index == 0 ? [] : [defaultGroups[index]],
-            );
-          },
+          ),
         ),
       ),
     );

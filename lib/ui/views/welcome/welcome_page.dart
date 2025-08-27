@@ -64,6 +64,7 @@ class _WelcomePageState extends State<WelcomePage>
               : WelcomeBody(
                 databaseInfo: fileProvider.recycleModels,
                 animation: _animation,
+                onLongPress: _toggle,
               );
     } else {
       childWidget =
@@ -72,21 +73,18 @@ class _WelcomePageState extends State<WelcomePage>
               : WelcomeBody(
                 databaseInfo: fileProvider.models,
                 animation: _animation,
+                onLongPress: _toggle,
               );
     }
 
     return Scaffold(
       appBar: WelcomeHeader(
-        onToggle: () {
-          _toggle();
-        },
+        onToggle:_toggle,
         animation: _animation,
       ),
       // Body
       body: RefreshIndicator(
-        onRefresh: () async {
-          await fileProvider.reload();
-        },
+        onRefresh: fileProvider.reload,
         child: Scrollbar(
           radius: Radius.circular(8),
           child: SingleChildScrollView(
