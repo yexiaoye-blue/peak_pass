@@ -78,8 +78,8 @@ class KdbxUIProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // 将当前数据库保存到内存中
-  Future<void> saveToMemory() => kdbxService.cache();
+  // // 将当前数据库保存到内存中
+  // Future<void> saveToMemory() => kdbxService.cache();
 
   // 将当前数据库保存到持久存储
   Future<void> save() => kdbxService.save();

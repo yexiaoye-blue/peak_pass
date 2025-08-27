@@ -184,26 +184,16 @@ class KdbxService {
     return _kdbxWrapper!;
   }
 
-  /// 保存到内存
+  /// 保存到内存,真正保存操作请调用[save]
   Future<Uint8List> cache() async {
-    return kdbxFile.saveTo<Uint8List>((bytes) async {
-      kdbxWrapper.bytes = bytes;
-      return bytes;
-    });
+    return await kdbxFile.save();
   }
 
-  /// 一般是用户点击保存?? 程序退出保存??
+  /// 保存到文件
   Future<void> save() async {
-    kdbxWrapper.bytes ??= await cache();
-
-    if (kdbxWrapper.bytes == null) {
-      throw StateError('bytes is null');
-    }
-
-    if (kdbxWrapper.bytes!.isEmpty) {
-      throw StateError('bytes is empty');
-    }
-    fileService.write(kdbxWrapper.fileModel, kdbxWrapper.bytes!);
+    await kdbxFile.saveTo((bytes) async {
+      return await fileService.write(kdbxWrapper.fileModel, bytes);
+    });
   }
 
   /// 创建临时工作区分组
@@ -265,8 +255,9 @@ class KdbxService {
       final tempEntries = getTempWorkspaceOrCreate().entries;
       for (var entry in tempEntries) {
         // TODO: 是否考虑永久删除
-        removeEntry(entry);
         // removePermanently(object)
+
+        removeEntry(entry);
       }
       final tempGroups = getTempWorkspaceOrCreate().groups;
       for (var group in tempGroups) {

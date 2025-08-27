@@ -1,4 +1,3 @@
-import 'dart:typed_data';
 import 'package:kdbx/kdbx.dart';
 
 import 'package:peak_pass/data/models/file_model.dart';
@@ -10,7 +9,6 @@ class KdbxFileWrapper {
   /// 实际的 KDBX 文件对象
   final KdbxFile kdbxFile;
   final FileModel fileModel;
-  Uint8List? bytes;
 
   @override
   String toString() =>
