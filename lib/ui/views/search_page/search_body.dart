@@ -4,6 +4,7 @@ import 'package:peak_pass/common/enums/enums.dart';
 import 'package:peak_pass/ui/views/entry_manage/entry_manage_page.dart';
 import 'package:peak_pass/ui/widgets/entry_list_tile.dart';
 import 'package:peak_pass/ui/widgets/gap.dart';
+import 'package:peak_pass/utils/loc.dart';
 import 'package:peak_pass/view_models/search_page_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -23,7 +24,7 @@ class SearchBody extends StatelessWidget {
     if (loading) return const Center(child: CircularProgressIndicator());
 
     final entries = provider.searchResult;
-    if (entries.isEmpty) return const Center(child: Text('No result'));
+    if (entries.isEmpty) return Center(child: Text(loc(context).emptyResult));
 
     return ListView.separated(
       padding: const EdgeInsets.only(top: 8),

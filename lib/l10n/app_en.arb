@@ -308,5 +308,31 @@
   "recycleBinIsEmpty": "Recycle Bin is empty.",
   "@recycleBinIsEmpty": {},
   "noDatabaseAvailable": "No Database Available.",
-  "@noDatabaseAvailable": {}
+  "@noDatabaseAvailable": {},
+
+  "all": "All",
+  "@all": {},
+  "unknown": "Unknown",
+  "@unknown": {},
+  "personal": "Personal",
+  "@personal": {},
+  "work": "Work",
+  "@work": {},
+  "finance": "Finance",
+  "@finance": {},
+  "shopping": "Shopping",
+  "@shopping": {},
+  "social": "Social",
+  "@social": {},
+  "other": "Other",
+  "@other": {},
+
+  "up": "Up",
+  "@up": {},
+  "down": "Down",
+  "@down": {},
+  "modify": "Modify",
+  "@modify": {},
+  "emptyResult": "Empty Result",
+  "@emptyResult": {}
 }

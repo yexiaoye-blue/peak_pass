@@ -77,10 +77,10 @@ class SearchHeader extends StatelessWidget implements PreferredSizeWidget {
           tabs: List.generate(
             provider.groups.length,
             (index) => Tab(
-              text: provider.groups[index].name,
-              // text: context.read<KdbxUIProvider>().getGroupName(
-              //   provider.groups[index],
-              // ),
+              text: LocUtils.localizeGroupName(
+                context,
+                provider.groups[index].name,
+              ),
               height: 36,
             ),
           ),

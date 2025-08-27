@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kdbx/kdbx.dart';
 import 'package:peak_pass/utils/custom_icon_utils.dart';
+import 'package:peak_pass/utils/loc.dart';
 import 'package:peak_pass/view_models/theme_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -48,7 +49,12 @@ class CategoryFilter extends StatelessWidget {
                       currentGroup.customIcon,
                     ),
                   ),
-                  label: Text(currentGroup.name.get() ?? 'Unknown'),
+                  label: Text(
+                    LocUtils.localizeGroupName(
+                      context,
+                      currentGroup.name.get(),
+                    ),
+                  ),
                   selected: selectedGroups.contains(currentGroup),
                   onSelected: (selected) {
                     selected
@@ -119,7 +125,10 @@ class CategoryFilter extends StatelessWidget {
                       children: [
                         // Title
                         Text(
-                          groups[index].name.get() ?? 'Unknown',
+                          LocUtils.localizeGroupName(
+                            context,
+                            groups[index].name.get(),
+                          ),
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,

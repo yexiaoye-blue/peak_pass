@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:peak_pass/utils/loc.dart';
 
 /// TextField more menu button
 class ActionMenu extends StatelessWidget {
@@ -29,10 +30,10 @@ class ActionMenu extends StatelessWidget {
       },
       menuChildren: [
         if (onModify != null)
-          MenuItemButton(onPressed: onModify, child: const Text('Modify')),
-        MenuItemButton(onPressed: onUp, child: const Text('Up')),
-        MenuItemButton(onPressed: onDown, child: const Text('Down')),
-        MenuItemButton(onPressed: onRemove, child: const Text('Remove')),
+          MenuItemButton(onPressed: onModify, child: Text(loc(context).modify)),
+        MenuItemButton(onPressed: onUp, child: Text(loc(context).up)),
+        MenuItemButton(onPressed: onDown, child: Text(loc(context).down)),
+        MenuItemButton(onPressed: onRemove, child: Text(loc(context).remove)),
       ],
     );
   }

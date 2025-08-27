@@ -42,16 +42,6 @@ class KdbxUIProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  
-  /// 对group name 做处理: 将rootGroup的名字渲染为All
-  /// TODO loc
-  // String getGroupName(KdbxGroup group) {
-  //   if (group.uuid == rootGroup.uuid) {
-  //     return 'All';
-  //   }
-  //   return group.name.get() ?? "Unknown";
-  // }
-
   // 根据选定的分组过滤条目，并可选择对分组排序，将选中的分组移到前面
   void filterEntryByGroups(
     List<KdbxGroup> selectedGroups, [

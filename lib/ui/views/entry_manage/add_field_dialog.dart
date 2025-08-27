@@ -18,14 +18,13 @@ class AddFieldDialog extends StatelessWidget {
       content: Wrap(
         spacing: 4,
         children: [
-          // TODO: 单独写一个 文本转换为国际化的本页面独有函数
           for (final item in provider.availableFields)
             PChoiceChip(
               avatar: Icon(
                 item.icon,
                 color: Theme.of(context).colorScheme.primary,
               ),
-              label: Text(item.key.key),
+              label: Text(LocUtils.localizeFieldName(context, item.key.key)),
               selected: provider.selectedFieldKey == item.key,
               onSelected: (val) {
                 if (val) {

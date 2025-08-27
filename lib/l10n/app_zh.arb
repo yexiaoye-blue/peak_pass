@@ -306,5 +306,32 @@
   "recycleBinIsEmpty": "回收站为空",
   "@recycleBinIsEmpty": {},
   "noDatabaseAvailable": "没有可用的数据库",
-  "@noDatabaseAvailable": {}
+  "@noDatabaseAvailable": {},
+
+  "all":  "所有",
+  "@all": {},
+  "unknown": "未知",
+  "@unknown": {},
+  "personal": "个人",
+  "@personal": {},
+  "work": "工作",
+  "@work": {},
+  "finance": "财务",
+  "@finance": {},
+  "shopping": "购物",
+  "@shopping": {},
+  "social": "社交",
+  "@social": {},
+  "other": "其他",
+  "@other": {},
+
+  "up": "向上",
+  "@up": {},
+  "down": "向下",
+  "@down": {},
+  "modify": "修改",
+  "@modify": {},
+  "emptyResult": "无结果",
+  "@emptyResult": {}
+
 }

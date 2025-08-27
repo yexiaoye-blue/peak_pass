@@ -54,7 +54,7 @@ class _CategorySelectorState extends State<CategorySelector> {
           PChoiceChipNormal(
             // 如果icon == null 则渲染 custom icon
             icon: Icons.abc,
-            text: _currentGroup.name.get() ?? 'Unknown',
+            text: LocUtils.localizeGroupName(context, _currentGroup.name.get()),
           ),
           AnimatedRotation(
             // 负数->逆时针；正数->顺时针
@@ -85,7 +85,9 @@ class _CategorySelectorState extends State<CategorySelector> {
                             ),
                           ),
                 ),
-                label: Text(item.name.get() ?? 'Unknown'),
+                label: Text(
+                  LocUtils.localizeGroupName(context, item.name.get()),
+                ),
                 selected: _currentGroup == item,
                 onSelected: (val) {
                   setState(() {

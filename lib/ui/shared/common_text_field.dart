@@ -40,7 +40,7 @@ class CommonTextField extends StatelessWidget {
       showCopyButton: !entryProvider.readonly,
       focusNode: focusNode,
       controller: controller,
-      label: Text(field.key.key),
+      label: Text(LocUtils.localizeFieldName(context, field.key.key)),
       maxLines: PresetFields.fromKdbxKey(field.key).maxLines,
       iconsAlignment:
           PresetFields.fromKdbxKey(field.key).maxLines > 1
