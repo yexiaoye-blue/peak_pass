@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:peak_pass/data/models/file_model.dart';
@@ -17,188 +19,159 @@ import 'package:peak_pass/ui/views/search_page/search_page.dart';
 import 'package:peak_pass/ui/views/settings.dart';
 import 'package:peak_pass/ui/views/unlock_database/unlock_database.dart';
 import 'package:peak_pass/ui/views/welcome/welcome_page.dart';
+import 'package:peak_pass/ui/widgets/privacy_protection.dart';
 import 'package:peak_pass/view_models/kdbx_ui_provider.dart';
 import 'package:peak_pass/view_models/file_provider.dart';
 import 'package:peak_pass/view_models/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class RouteConfig {
-  RouteConfig._();
+  const RouteConfig._();
   static final _instance = RouteConfig._();
   static RouteConfig instance() => _instance;
 
-  String getLocation(String routeName) => '/$routeName';
+  GoRouter router(List<NavigatorObserver>? observers) => GoRouter(
+    initialLocation: _path(WelcomePage.routeName),
+    debugLogDiagnostics: true,
+    redirect: _redirect,
+    observers: observers,
+    routes: [
+      ShellRoute(
+        routes: _routes(),
+        builder: (context, state, child) => PrivacyProtection(child: child),
+      ),
+    ],
+  );
 
-  GoRouter router(List<NavigatorObserver>? observers) {
-    return GoRouter(
-      initialLocation: getLocation(WelcomePage.routeName),
-      debugLogDiagnostics: true,
-
-      redirect: (context, state) {
-        final initialized = context.read<KdbxUIProvider>().initialized;
-        // 1. 白名单：直接放行（与初始化状态无关）
-        const alwaysAllow = <String>[LanguagePage.routeName];
-        if (alwaysAllow.any(
-          (name) => state.matchedLocation.startsWith(getLocation(name)),
-        )) {
-          return null;
-        }
-        // 2. 初始化前可访问，但初始化后直接跳首页
-        const beforeInitOnly = <String>[
-          WelcomePage.routeName,
-          UnlockDatabasePage.routeName,
-          CreateDatabasePage.routeName,
-        ];
-        if (beforeInitOnly.any(
-          (name) => state.matchedLocation.startsWith(getLocation(name)),
-        )) {
-          // 在设置页面切换主题色时,保持在该页面
-          final themeProvider = context.read<ThemeProvider>();
-          if (initialized && themeProvider.isSettingsPage) {
-            themeProvider.isSettingsPage = false;
-            return getLocation(SettingsPage.routeName);
-          }
-          if (initialized) {
-            return getLocation(HomePage.routeName);
-          }
-          return null;
-        }
-        // 3. 其他页面，初始化前一律跳 Welcome
-        if (!initialized) {
-          return getLocation(WelcomePage.routeName);
-        }
-        // 4. 其他情况放行
-        return null;
+  List<RouteBase> _routes() => [
+    GoRoute(
+      name: WelcomePage.routeName,
+      path: _path(WelcomePage.routeName),
+      builder: (context, _) {
+        context.read<FileProvider>().reload();
+        return const WelcomePage();
       },
+    ),
+    GoRoute(
+      name: HomePage.routeName,
+      path: _path(HomePage.routeName),
+      builder: (_, _) => const HomePage(),
+    ),
+    GoRoute(
+      name: SearchPage.routeName,
+      path: _path(SearchPage.routeName),
+      builder: (_, _) => const SearchPage(),
+    ),
+    GoRoute(
+      name: UnlockDatabasePage.routeName,
+      path: _path(UnlockDatabasePage.routeName),
+      builder: (_, state) {
+        final dbFileModel = state.extra as FileModel;
+        return UnlockDatabasePage(databaseInfoModel: dbFileModel);
+      },
+    ),
+    GoRoute(
+      name: EntryManagePage.routeName,
+      path: _path(EntryManagePage.routeName),
+      builder: (_, _) => const EntryManagePage(),
+    ),
+    GoRoute(
+      name: PasswordGeneratorPage.routeName,
+      path: _path(PasswordGeneratorPage.routeName),
+      builder:
+          (_, state) => PasswordGeneratorPage(isPopResult: state.extra == true),
+    ),
+    GoRoute(
+      name: ChooseIconPage.routeName,
+      path: _path(ChooseIconPage.routeName),
+      builder: (_, state) {
+        IconModel? defaultIcon;
+        if (state.extra is IconModel || state.extra is IconModel?) {
+          defaultIcon = state.extra as IconModel?;
+        }
+        return ChooseIconPage(defaultIcon: defaultIcon);
+      },
+    ),
+    GoRoute(
+      name: SettingsPage.routeName,
+      path: _path(SettingsPage.routeName),
+      builder: (_, _) => const SettingsPage(),
+    ),
+    GoRoute(
+      name: AddGroupPage.routeName,
+      path: _path(AddGroupPage.routeName),
+      builder: (_, _) => const AddGroupPage(),
+    ),
+    GoRoute(
+      name: CreateDatabasePage.routeName,
+      path: _path(CreateDatabasePage.routeName),
+      builder: (_, _) => const CreateDatabasePage(),
+    ),
+    GoRoute(
+      name: OtpSettingPage.routeName,
+      path: _path(OtpSettingPage.routeName),
+      builder: (_, _) => const OtpSettingPage(),
+    ),
+    GoRoute(
+      name: EnterCodeManuallyPage.routeName,
+      path: _path(EnterCodeManuallyPage.routeName),
+      builder: (_, _) => const EnterCodeManuallyPage(),
+    ),
+    GoRoute(
+      name: MobileScannerPage.routeName,
+      path: _path(MobileScannerPage.routeName),
+      builder: (_, _) => const MobileScannerPage(),
+    ),
+    GoRoute(
+      name: LanguagePage.routeName,
+      path: _path(LanguagePage.routeName),
+      builder: (_, _) => const LanguagePage(),
+    ),
+    GoRoute(
+      name: ErrorPage.routeName,
+      path: _path(ErrorPage.routeName),
+      builder: (_, _) => const ErrorPage(),
+    ),
+  ];
 
-      observers: observers,
-      routes: [
-        GoRoute(
-          name: WelcomePage.routeName,
-          path: getLocation(WelcomePage.routeName),
-          builder: (BuildContext context, GoRouterState state) {
-            context.read<FileProvider>().reload();
-            return WelcomePage();
-          },
-        ),
-        GoRoute(
-          name: HomePage.routeName,
-          path: getLocation(HomePage.routeName),
-          builder: (BuildContext context, GoRouterState state) {
-            return const HomePage();
-          },
-        ),
-        GoRoute(
-          name: SearchPage.routeName,
-          path: getLocation(SearchPage.routeName),
-          builder: (BuildContext context, GoRouterState state) {
-            return const SearchPage();
-          },
-        ),
-        GoRoute(
-          name: UnlockDatabasePage.routeName,
-          path: getLocation(UnlockDatabasePage.routeName),
-          builder: (BuildContext context, GoRouterState state) {
-            // if (extra is DatabaseInfoModel) {
-            final dbFileModel = state.extra as FileModel;
-            return UnlockDatabasePage(databaseInfoModel: dbFileModel);
-          },
-        ),
-        GoRoute(
-          name: EntryManagePage.routeName,
-          // path: '${getLocation(EntryManagePage.routeName)}/:${EntryManagePage.paramMode}',
-          path: getLocation(EntryManagePage.routeName),
-          builder: (BuildContext context, GoRouterState state) {
-            // final extra = state.extra;
-            // if (extra != null && extra is Map?) {
-            //   final data = extra as Map<String, dynamic>;
-            //   final entry = data['KDBX_ENTRY'] as KdbxEntry?;
-            //   final pageType = data['PAGE_TYPE'] as EntryManagePageType?;
-            //   return EntryManagePage(entry: entry, type: pageType);
-            // }
-
-            return EntryManagePage();
-          },
-        ),
-        GoRoute(
-          name: PasswordGeneratorPage.routeName,
-          path: getLocation(PasswordGeneratorPage.routeName),
-          builder: (BuildContext context, GoRouterState state) {
-            return PasswordGeneratorPage(isPopResult: state.extra == true);
-          },
-        ),
-        GoRoute(
-          name: ChooseIconPage.routeName,
-          path: getLocation(ChooseIconPage.routeName),
-          builder: (BuildContext context, GoRouterState state) {
-            IconModel? defaultIcon;
-            if (state.extra is IconModel || state.extra is IconModel?) {
-              defaultIcon = state.extra as IconModel?;
-            }
-            return ChooseIconPage(defaultIcon: defaultIcon);
-          },
-        ),
-        GoRoute(
-          name: SettingsPage.routeName,
-          path: getLocation(SettingsPage.routeName),
-          builder: (BuildContext context, GoRouterState state) {
-            return const SettingsPage();
-          },
-        ),
-        GoRoute(
-          name: AddGroupPage.routeName,
-          path: getLocation(AddGroupPage.routeName),
-          builder: (BuildContext context, GoRouterState state) {
-            return const AddGroupPage();
-          },
-        ),
-        GoRoute(
-          name: CreateDatabasePage.routeName,
-          path: getLocation(CreateDatabasePage.routeName),
-          builder: (BuildContext context, GoRouterState state) {
-            return CreateDatabasePage();
-          },
-        ),
-
-        GoRoute(
-          name: OtpSettingPage.routeName,
-          path: getLocation(OtpSettingPage.routeName),
-          builder: (BuildContext context, GoRouterState state) {
-            return OtpSettingPage();
-          },
-        ),
-        GoRoute(
-          name: EnterCodeManuallyPage.routeName,
-          path: getLocation(EnterCodeManuallyPage.routeName),
-          builder: (BuildContext context, GoRouterState state) {
-            return EnterCodeManuallyPage();
-          },
-        ),
-        GoRoute(
-          name: MobileScannerPage.routeName,
-          path: getLocation(MobileScannerPage.routeName),
-          builder: (BuildContext context, GoRouterState state) {
-            return MobileScannerPage();
-          },
-        ),
-        GoRoute(
-          name: ErrorPage.routeName,
-          path: getLocation(ErrorPage.routeName),
-          builder: (BuildContext context, GoRouterState state) {
-            return ErrorPage();
-          },
-        ),
-
-        GoRoute(
-          name: LanguagePage.routeName,
-          path: getLocation(LanguagePage.routeName),
-          builder: (BuildContext context, GoRouterState state) {
-            return LanguagePage();
-          },
-        ),
-      ],
-    );
+  FutureOr<String?> _redirect(BuildContext context, GoRouterState state) {
+    final initialized = context.read<KdbxUIProvider>().initialized;
+    // 1. 白名单：直接放行（与初始化状态无关）
+    const alwaysAllow = <String>[LanguagePage.routeName];
+    if (alwaysAllow.any(
+      (name) => state.matchedLocation.startsWith(_path(name)),
+    )) {
+      return null;
+    }
+    // 2. 初始化前可访问，但初始化后直接跳首页
+    const beforeInitOnly = <String>[
+      WelcomePage.routeName,
+      UnlockDatabasePage.routeName,
+      CreateDatabasePage.routeName,
+    ];
+    if (beforeInitOnly.any(
+      (name) => state.matchedLocation.startsWith(_path(name)),
+    )) {
+      // 在设置页面切换主题色时,保持在该页面
+      final themeProvider = context.read<ThemeProvider>();
+      if (initialized && themeProvider.isSettingsPage) {
+        themeProvider.isSettingsPage = false;
+        return _path(SettingsPage.routeName);
+      }
+      if (initialized) {
+        return _path(HomePage.routeName);
+      }
+      return null;
+    }
+    // 3. 其他页面，初始化前一律跳 Welcome
+    if (!initialized) {
+      return _path(WelcomePage.routeName);
+    }
+    // 4. 其他情况放行
+    return null;
   }
+
+  String _path(String routeName) => '/$routeName';
 }
 
 class RouteStackObserver extends NavigatorObserver {

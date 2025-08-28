@@ -88,9 +88,9 @@ class _MobileScannerPageState extends State<MobileScannerPage>
   Future<void> dispose() async {
     routeObserver.unsubscribe(this);
     WidgetsBinding.instance.removeObserver(this); // 移除观察者
-    super.dispose();
     await controller?.dispose();
     controller = null;
+    super.dispose();
   }
 
   void _popWithBarcode(Barcode? barcode) async {

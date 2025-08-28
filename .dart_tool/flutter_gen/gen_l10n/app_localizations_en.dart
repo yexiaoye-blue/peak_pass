@@ -437,4 +437,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get emptyResult => 'Empty Result';
+
+  @override
+  String get privacyProtection => 'Privacy Protection';
 }

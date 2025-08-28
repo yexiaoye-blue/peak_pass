@@ -913,6 +913,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Empty Result'**
   String get emptyResult;
+
+  /// No description provided for @privacyProtection.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Protection'**
+  String get privacyProtection;
 }
 
 class _AppLocalizationsDelegate

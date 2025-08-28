@@ -334,5 +334,7 @@
   "modify": "Modify",
   "@modify": {},
   "emptyResult": "Empty Result",
-  "@emptyResult": {}
+  "@emptyResult": {},
+  "privacyProtection": "Privacy Protection",
+  "@privacyProtection": {}
 }

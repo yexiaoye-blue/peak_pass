@@ -424,4 +424,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get emptyResult => '无结果';
+
+  @override
+  String get privacyProtection => '隐私保护';
 }
