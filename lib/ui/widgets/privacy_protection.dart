@@ -14,7 +14,8 @@ class PrivacyProtection extends StatefulWidget {
 
 class _PrivacyProtectionState extends State<PrivacyProtection>
     with WidgetsBindingObserver {
-  bool _hidden = false;
+  // bool _hidden = false;
+  final ValueNotifier<bool> _hidden = ValueNotifier(false);
   Timer? _debounceTimer;
 
   @override
@@ -29,19 +30,15 @@ class _PrivacyProtectionState extends State<PrivacyProtection>
     _debounceTimer?.cancel();
 
     // 如果是从非活跃状态恢复到活跃状态，且当前是隐藏状态，则立即显示
-    if (state == AppLifecycleState.resumed && _hidden) {
-      setState(() {
-        _hidden = false;
-      });
+    if (state == AppLifecycleState.resumed && _hidden.value) {
+      _hidden.value = false;
     } else {
       // 添加延迟处理以避免屏幕旋转时的闪烁问题
       // 例如: 屏幕旋转时生命周期状态变化: resumed -> inactive -> resumed
       // 如果不使用延迟，会在旋转过程中短暂显示隐私保护页面，影响用户体验
       // 注意：这种解决方案并不完美，因为延迟时间难以精确控制
       _debounceTimer = Timer(const Duration(milliseconds: 200), () {
-        setState(() {
-          _hidden = state != AppLifecycleState.resumed;
-        });
+        _hidden.value = state != AppLifecycleState.resumed;
       });
     }
   }
@@ -58,12 +55,15 @@ class _PrivacyProtectionState extends State<PrivacyProtection>
     return Stack(
       children: [
         widget.child,
-        IgnorePointer(
-          ignoring: !_hidden,
-          child: Opacity(
-            opacity: _hidden ? 1 : 0,
-            child: const _PrivacyProtectionOverlay(),
-          ),
+        ValueListenableBuilder<bool>(
+          valueListenable: _hidden,
+          builder: (context, value, child) {
+            return IgnorePointer(
+              ignoring: !value,
+              child: Opacity(opacity: value ? 1 : 0, child: child),
+            );
+          },
+          child: const _PrivacyProtectionOverlay(),
         ),
       ],
     );
@@ -74,6 +74,7 @@ class _PrivacyProtectionOverlay extends StatelessWidget {
   const _PrivacyProtectionOverlay();
   @override
   Widget build(BuildContext context) {
+    print('========== overlay build ==============');
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
       child: Container(

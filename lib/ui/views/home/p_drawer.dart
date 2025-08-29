@@ -126,7 +126,6 @@ class PDrawer extends StatelessWidget {
                   tileColor: Theme.of(context).colorScheme.surfaceContainer,
                   title: Text(loc(context).rateApp),
                   onTap: () async {
-                    // context.pushNamed<Barcode?>(MobileScannerPage.routeName);
                   },
                 ),
                 ListTile(
