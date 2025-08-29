@@ -28,6 +28,7 @@ class _EnterCodeManuallyPageState extends State<EnterCodeManuallyPage>
     with SingleTickerProviderStateMixin {
   late final TabController tabController;
   final TextEditingController otpUriController = TextEditingController();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   TotpProvider totpProvider = TotpProvider();
   HotpProvider hotpProvider = HotpProvider();
@@ -112,6 +113,7 @@ class _EnterCodeManuallyPageState extends State<EnterCodeManuallyPage>
             child: IconButton(
               onPressed: () async {
                 final res = await showMutiLineInputDialog(
+                  formKey: formKey,
                   context: context,
                   title: Text(loc(context).enterOTPUri),
                   label: Text(loc(context).uri),
@@ -182,7 +184,6 @@ class _EnterCodeManuallyPageState extends State<EnterCodeManuallyPage>
             if (totpProvider.formKey.currentState!.validate()) {
               provider.updateField(
                 KdbxKeyCommon.OTP,
-
                 Uri.encodeComponent(totpProvider.uri.toString()),
               );
 
@@ -191,7 +192,6 @@ class _EnterCodeManuallyPageState extends State<EnterCodeManuallyPage>
           } else {
             if (hotpProvider.formKey.currentState!.validate()) {
               // save to entry
-
               provider.updateField(
                 KdbxKeyCommon.OTP,
                 Uri.encodeComponent(hotpProvider.uri.toString()),

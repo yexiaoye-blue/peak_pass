@@ -7,7 +7,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:kdbx/kdbx.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import 'package:peak_pass/main.dart';
 import 'package:peak_pass/ui/views/enter_code_manually/enter_code_manually_page.dart';
 import 'package:peak_pass/ui/views/entry_manage/entry_manage_page.dart';
 import 'package:peak_pass/ui/widgets/p_button_container.dart';
@@ -26,7 +25,7 @@ class MobileScannerPage extends StatefulWidget {
 }
 
 class _MobileScannerPageState extends State<MobileScannerPage>
-    with WidgetsBindingObserver, RouteAware {
+    with WidgetsBindingObserver {
   MobileScannerController? controller;
   Barcode? _barcode;
   bool flashStatus = false;
@@ -42,32 +41,10 @@ class _MobileScannerPageState extends State<MobileScannerPage>
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final ModalRoute? route = ModalRoute.of(context);
-    if (route is PageRoute) {
-      routeObserver.subscribe(this, route);
-    }
-  }
-
-  @override
-  void didPushNext() {
-    super.didPushNext();
-    unawaited(controller!.stop());
-  }
-
-  @override
-  void didPopNext() {
-    super.didPopNext();
-
-    unawaited(controller!.start());
-  }
-
-  @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     // If the controller is not ready, do not try to start or stop it.
     // Permission dialogs can trigger lifecycle changes before the controller is ready.
-    if (controller?.value.hasCameraPermission ?? false == false) {
+    if (controller?.value.hasCameraPermission ?? true) {
       return;
     }
     logger.d(state);
@@ -76,22 +53,21 @@ class _MobileScannerPageState extends State<MobileScannerPage>
       case AppLifecycleState.detached:
       case AppLifecycleState.hidden:
       case AppLifecycleState.paused:
+      case AppLifecycleState.inactive:
+        unawaited(controller?.stop());
         return;
       case AppLifecycleState.resumed:
         unawaited(controller?.start());
-      case AppLifecycleState.inactive:
-        unawaited(controller?.stop());
     }
   }
 
   @override
   Future<void> dispose() async {
-    routeObserver.unsubscribe(this);
     WidgetsBinding.instance.removeObserver(this); // 移除观察者
-    await controller?.dispose();
-    controller = null;
     super.dispose();
+    await controller?.dispose();
   }
+
 
   void _popWithBarcode(Barcode? barcode) async {
     if (barcode != null) {
@@ -261,13 +237,19 @@ class _MobileScannerPageState extends State<MobileScannerPage>
               Spacer(),
               PButtonContainer(
                 child: FilledButton(
-                  onPressed: _enterManually,
+                  onPressed: () {
+                    _enterManually();
+                    controller!.pause();
+                  },
                   child: Text(loc(context).enterManually),
                 ),
               ),
               PButtonContainer(
                 child: FilledButton.tonal(
-                  onPressed: _analyzeImage,
+                  onPressed: () {
+                    _analyzeImage();
+                    controller!.pause();
+                  },
                   child: Text(loc(context).album),
                 ),
               ),

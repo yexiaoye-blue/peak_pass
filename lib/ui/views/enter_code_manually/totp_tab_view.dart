@@ -4,7 +4,6 @@ import 'package:peak_pass/common/constants/otp_parameters.dart';
 import 'package:peak_pass/ui/widgets/horizontal_radio_field.dart';
 import 'package:peak_pass/ui/widgets/p_dropdown_menu.dart';
 import 'package:peak_pass/ui/widgets/p_text_form_field.dart';
-import 'package:peak_pass/utils/common_utils.dart';
 import 'package:peak_pass/utils/validate_utils.dart';
 import 'package:peak_pass/utils/loc.dart';
 import 'package:peak_pass/view_models/totp_provider.dart';
@@ -25,7 +24,6 @@ class _TotpTabViewState extends State<TotpTabView>
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Consumer<TotpProvider>(
         builder: (context, provider, child) {
-          logger.d(provider);
           return Form(
             key: provider.formKey,
             child: Column(

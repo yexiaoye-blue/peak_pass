@@ -4,6 +4,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:peak_pass/data/services/kdbx_service.dart';
+import 'package:peak_pass/ui/views/entry_recycler_bin/entry_recycler_bin.dart';
 import 'package:peak_pass/ui/views/welcome/welcome_page.dart';
 import 'package:peak_pass/utils/common_utils.dart';
 import 'package:peak_pass/utils/loc.dart';
@@ -73,6 +74,12 @@ class PDrawer extends StatelessWidget {
                   onTap: () {
                     context.pushNamed(PasswordGeneratorPage.routeName);
                   },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.delete_outline_rounded),
+                  title: Text(loc(context).recycleBin),
+                  tileColor: Theme.of(context).colorScheme.surfaceContainer,
+                  onTap: () => context.pushNamed(EntryRecyclerBin.routeName)
                 ),
                 ListTile(
                   leading: const Icon(Icons.compare_arrows),

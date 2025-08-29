@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kdbx/kdbx.dart';
 import 'package:peak_pass/data/models/file_model.dart';
 import 'package:peak_pass/data/models/icon_model.dart';
 import 'package:peak_pass/ui/views/add_group.dart';
@@ -9,6 +10,8 @@ import 'package:peak_pass/ui/views/choose_icon.dart';
 import 'package:peak_pass/ui/views/create_database/create_database_page.dart';
 import 'package:peak_pass/ui/views/enter_code_manually/enter_code_manually_page.dart';
 import 'package:peak_pass/ui/views/entry_manage/entry_manage_page.dart';
+import 'package:peak_pass/ui/views/entry_recycler_bin/entry_recycler_bin.dart';
+import 'package:peak_pass/ui/views/entry_recycler_bin/entry_recycler_bin_detail.dart';
 import 'package:peak_pass/ui/views/error.dart';
 import 'package:peak_pass/ui/views/home/home_page.dart';
 import 'package:peak_pass/ui/views/language.dart';
@@ -126,6 +129,19 @@ class RouteConfig {
       name: LanguagePage.routeName,
       path: _path(LanguagePage.routeName),
       builder: (_, _) => const LanguagePage(),
+    ),
+    GoRoute(
+      name: EntryRecyclerBin.routeName,
+      path: _path(EntryRecyclerBin.routeName),
+      builder: (_, _) => const EntryRecyclerBin(),
+    ),
+    GoRoute(
+      name: EntryRecyclerBinDetail.routeName,
+      path: _path(EntryRecyclerBinDetail.routeName),
+      builder: (_, state) {
+        final entry = state.extra as KdbxEntry;
+        return EntryRecyclerBinDetail(entry: entry);
+      },
     ),
     GoRoute(
       name: ErrorPage.routeName,

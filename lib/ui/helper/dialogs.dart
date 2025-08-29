@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:peak_pass/common/enums/enums.dart';
 import 'package:peak_pass/data/models/file_model.dart';
 import 'package:peak_pass/ui/shared/file_info_item.dart';
@@ -55,63 +56,61 @@ Future<bool?> showAlertDialog({
 );
 
 Future<bool?> showMutiLineInputDialog({
+  required GlobalKey<FormState> formKey,
   required BuildContext context,
   int maxLines = 3,
   required Widget title,
   required Widget label,
   required TextEditingController controller,
   String? Function(String? value)? validator,
-}) async {
-  final GlobalKey<FormState> _formKey = GlobalKey();
-  return showCommonDialog(
-    context: context,
-    title: title,
-    contents: [
-      Form(
-        key: _formKey,
-        child: PTextFormField(
-          controller: controller,
-          maxLines: maxLines,
-          label: label,
-          validator: validator,
+}) => showCommonDialog(
+  context: context,
+  title: title,
+  contents: [
+    Form(
+      key: formKey,
+      child: PTextFormField(
+        controller: controller,
+        maxLines: maxLines,
+        label: label,
+        validator: validator,
+      ),
+    ),
+  ],
+  actions: [
+    Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      spacing: 6,
+      children: [
+        FilledButton.tonal(
+          onPressed: () {
+            controller.clear();
+            context.pop(false);
+          },
+          style: ButtonStyle(
+            shape: WidgetStatePropertyAll(
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            ),
+          ),
+          child: Text(loc(context).cancel),
         ),
-      ),
-    ],
-    actions: [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        spacing: 6,
-        children: [
-          FilledButton.tonal(
-            onPressed: () {
-              controller.clear();
-              Navigator.of(context).pop();
-            },
-            style: ButtonStyle(
-              shape: WidgetStatePropertyAll(
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-              ),
+        FilledButton(
+          onPressed: () {
+            if (formKey.currentState?.validate() ?? true) {
+              context.pop(true);
+            }
+          },
+          style: ButtonStyle(
+            shape: WidgetStatePropertyAll(
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             ),
-            child: Text(loc(context).cancel),
           ),
-          FilledButton(
-            onPressed: () {
-              if (_formKey.currentState?.validate() ?? true) {
-                Navigator.of(context).pop(true);
-              }
-            },
-            style: ButtonStyle(
-              shape: WidgetStatePropertyAll(
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-              ),
-            ),
-            child: Text(loc(context).confirm),
-          ),
-        ],
-      ),
-    ],
-  );
-}
+          child: Text(loc(context).confirm),
+        ),
+      ],
+    ),
+  ],
+);
 
 /// confirm: return true
 /// cancel: return null

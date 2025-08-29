@@ -15,20 +15,20 @@ class PrivacyProtection extends StatefulWidget {
 class _PrivacyProtectionState extends State<PrivacyProtection>
     with WidgetsBindingObserver {
   // bool _hidden = false;
-  final ValueNotifier<bool> _hidden = ValueNotifier(false);
+  late final ValueNotifier<bool> _hidden;
   Timer? _debounceTimer;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    _hidden = ValueNotifier(false);
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
     _debounceTimer?.cancel();
-
     // 如果是从非活跃状态恢复到活跃状态，且当前是隐藏状态，则立即显示
     if (state == AppLifecycleState.resumed && _hidden.value) {
       _hidden.value = false;
@@ -47,6 +47,7 @@ class _PrivacyProtectionState extends State<PrivacyProtection>
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     _debounceTimer?.cancel();
+    _hidden.dispose();
     super.dispose();
   }
 
@@ -74,7 +75,6 @@ class _PrivacyProtectionOverlay extends StatelessWidget {
   const _PrivacyProtectionOverlay();
   @override
   Widget build(BuildContext context) {
-    print('========== overlay build ==============');
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
       child: Container(

@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:peak_pass/data/services/kdbx_service.dart';
+import 'package:peak_pass/ui/helper/animation_header.dart';
 import 'package:peak_pass/ui/widgets/fade_cross_transition.dart';
 import 'package:peak_pass/utils/loc.dart';
 import 'package:provider/provider.dart';
 
 import 'package:peak_pass/ui/shared/category_filter.dart';
-import 'package:peak_pass/ui/views/home/home_header.dart';
 import 'package:peak_pass/ui/views/home/home_page_controller.dart';
 import 'package:peak_pass/ui/views/home/p_drawer.dart';
 import 'package:peak_pass/ui/views/entry_manage/current_entry_controller.dart';
@@ -79,7 +79,7 @@ class _HomeScreen extends StatelessWidget {
 
     return Scaffold(
       key: homeCtl.scaffoldKey,
-      appBar: HomeHeader(
+      appBar: AnimationHeader(
         animation: homeCtl.editingAnimation,
         leftNormalChild: Row(
           spacing: 4,

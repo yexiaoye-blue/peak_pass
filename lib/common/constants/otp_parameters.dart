@@ -3,6 +3,8 @@ import 'package:otp/otp.dart';
 class OtpParameters {
   const OtpParameters._();
 
+  static const String prefix = 'otpauth';
+
   /// 支持的算法
   static const List<Algorithm> algorithms = Algorithm.values;
 

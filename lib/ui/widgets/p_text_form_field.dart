@@ -15,6 +15,7 @@ class PTextFormField extends StatefulWidget {
     this.enabled = true,
     this.readonly = false,
     this.maxLines = 1,
+    this.autoWrap = false,
     this.initialValue,
     this.keyboardType,
     this.textInputAction,
@@ -47,6 +48,7 @@ class PTextFormField extends StatefulWidget {
   final bool enabled;
   final bool readonly;
   final int maxLines;
+  final bool autoWrap;
   // 输入框初始值, 实际上是传递给controller.text
   final String? initialValue;
   // 键盘类型
@@ -87,7 +89,7 @@ class _PTextFieldState extends State<PTextFormField> {
   bool get _isPasswordKeyboardType =>
       widget.keyboardType == TextInputType.visiblePassword;
 
-  bool get _isMultiLine => widget.maxLines > 1;
+  bool get _isMultiLine => widget.autoWrap || widget.maxLines > 1;
 
   void _init() {
     if (widget.controller == null) {
@@ -228,6 +230,7 @@ class _PTextFieldState extends State<PTextFormField> {
             return InputDecorator(
               isFocused: widget.focusNode?.hasFocus ?? false,
               decoration: InputDecoration(
+                
                 errorText: field.errorText,
                 enabled: widget.enabled,
                 contentPadding: const EdgeInsets.all(0),
@@ -290,7 +293,7 @@ class _PTextFieldState extends State<PTextFormField> {
                           child: TextField(
                             controller: _effectiveController,
                             focusNode: _effectiveFocusNode,
-                            maxLines: widget.maxLines,
+                            maxLines: widget.autoWrap ? null : widget.maxLines,
                             enabled: widget.enabled,
                             readOnly: widget.readonly,
                             obscureText: _obscureText,

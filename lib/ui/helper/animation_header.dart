@@ -1,8 +1,9 @@
+
 import 'package:flutter/material.dart';
 import 'package:peak_pass/ui/widgets/fade_cross_transition.dart';
 
-class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
-  const HomeHeader({
+class AnimationHeader extends StatelessWidget implements PreferredSizeWidget {
+  const AnimationHeader({
     super.key,
     required this.animation,
     this.leftEditingChild,
@@ -19,6 +20,7 @@ class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return AppBar(
       automaticallyImplyLeading: false,
       leadingWidth: 0,

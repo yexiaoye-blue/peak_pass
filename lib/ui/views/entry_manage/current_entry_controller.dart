@@ -57,6 +57,7 @@ class CurrentEntryController extends ChangeNotifier {
   List<FieldType> get availableFields => List.of(PresetFields.types)
     ..retainWhere((type) => !strEntries.any((item) => item.key == type.key));
 
+
   /// 控制EntryManagePage页面Fields是否只读
   /// - true: 显示  copy button
   /// - false: 显示 more button
@@ -87,7 +88,6 @@ class CurrentEntryController extends ChangeNotifier {
     EntryPageType? type,
   }) {
     final curPageType = type ?? pageType;
-
     if (curPageType == EntryPageType.newEntry) {
       if (shouldReset) {
         // 1. 创建entry
@@ -164,6 +164,7 @@ class CurrentEntryController extends ChangeNotifier {
   /// 根据key更新当前entry下的Field
   void updateField(KdbxKey key, String value) {
     kdbxService.updateEntry(entry, key, value);
+    notifyListeners();
   }
 
   Future<void> incrementHotpCounter(BuildContext context) async {

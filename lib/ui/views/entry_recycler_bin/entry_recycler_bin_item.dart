@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:kdbx/kdbx.dart';
 import 'package:peak_pass/common/global.dart';
-import 'package:peak_pass/ui/views/home/home_page_controller.dart';
+import 'package:peak_pass/ui/views/entry_recycler_bin/entry_recycler_bin_controller.dart';
 import 'package:peak_pass/ui/widgets/fade_cross_transition.dart';
 import 'package:peak_pass/utils/custom_icon_utils.dart';
 import 'package:peak_pass/view_models/theme_provider.dart';
 import 'package:provider/provider.dart';
 
-class EntryListTile extends StatelessWidget {
-  const EntryListTile({
+class EntryRecyclerBinItem extends StatelessWidget {
+  const EntryRecyclerBinItem({
     super.key,
     this.animation,
     required this.entry,
@@ -26,8 +26,8 @@ class EntryListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = context.read<ThemeProvider>().isDark;
-    final homeController =
-        hasAnimation ? context.read<HomePageController>() : null;
+    final controller =
+        hasAnimation ? context.read<EntryRecyclerBinController>() : null;
     final leading =
         hasAnimation
             ? FadeCrossTransition(
@@ -37,9 +37,9 @@ class EntryListTile extends StatelessWidget {
                 context,
               ),
               secondChild: Checkbox(
-                value: homeController?.isEntrySelected(entry),
+                value: controller?.isSelected(entry),
                 onChanged: (val) {
-                  homeController?.toggleEntrySelection([entry]);
+                  controller?.toggleEntrySelection([entry]);
                 },
               ),
             )
@@ -58,8 +58,6 @@ class EntryListTile extends StatelessWidget {
           entry.times.lastModificationTime.get()?.toLocal().toString() ??
               'Unknown',
         ),
-        // TODO: copy to clipboard
-        trailing: const Icon(Icons.copy),
         tileColor:
             isDark ? Theme.of(context).colorScheme.surfaceContainer : null,
         shape:
@@ -69,9 +67,9 @@ class EntryListTile extends StatelessWidget {
                 )
                 : null,
         onTap:
-            homeController?.isEditing ?? false
-                ? () => homeController?.toggleEntrySelection([entry])
-                : onTap,
+            controller?.isNormal ?? true
+                ? onTap
+                : () => controller?.toggleEntrySelection([entry]),
         onLongPress: onLongPress,
       ),
     );
